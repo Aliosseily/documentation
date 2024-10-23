@@ -40,6 +40,11 @@
 <li>Returns an error message if there is an issue with the request.</li>
 </ul>
 </li>
+<li><strong>Failure</strong> (500 Internal Server Error):
+<ul>
+<li>Returns an error message if there is an issue with processing the request on the server.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>
@@ -52,24 +57,31 @@
 <p>json</p>
 </li>
 </ul>
-<pre class=" language-json"><code class="prism  language-json">    <span class="token punctuation">{</span>
-	    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
-	    <span class="token string">"otp"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-	    <span class="token string">"amount"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-	    <span class="token string">"currency"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
-	    <span class="token string">"currencyName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
-	    <span class="token string">"firstName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
-	    <span class="token string">"middleName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
-	    <span class="token string">"lastName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
-	    <span class="token string">"mobileNumber"</span><span class="token punctuation">:</span> <span class="token string">"string"</span>
-	<span class="token punctuation">}</span>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+  <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+    <span class="token string">"otp"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">"amount"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">"currency"</span><span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    <span class="token string">"currencyName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+    <span class="token string">"firstName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+    <span class="token string">"middleName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+    <span class="token string">"lastName"</span><span class="token punctuation">:</span> <span class="token string">"string"</span><span class="token punctuation">,</span>
+    <span class="token string">"mobileNumber"</span><span class="token punctuation">:</span> <span class="token string">"string"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token string">"string"</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>
-<p><strong>Example Response (Failure - Account Not Found)</strong>:</p>
-<p><code>"Account not found! Please check info."</code></p>
-</li>
+<li><strong>Example Response (Failure - Account Not Found)</strong>:</li>
 </ul>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+<span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+<span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token string">"Account not found! Please check the info."</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <h3 id="post-apiv1cashoutpaycti">2. <strong>POST /api/v1/cashout/PAYCTI</strong></h3>
 <ul>
 <li>
@@ -114,6 +126,8 @@
 <li>Returns an error message if the account is not found or the OTP is invalid…</li>
 </ul>
 </li>
+<li><strong>Failure</strong> (500 Internal Server Error):</li>
+<li>Returns an error message if there is an issue with processing the request on the server.</li>
 </ul>
 </li>
 <li>
@@ -187,6 +201,95 @@
   <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
   <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token string">"Account is locked, please contact support."</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="post-apiv1cashoutrevoke">3. <strong>POST /api/v1/cashout/Revoke</strong></h3>
+<ul>
+<li>
+<p><strong>Description</strong>: Revokes a previously submitted cashout request for an account.</p>
+</li>
+<li>
+<p><strong>HTTP Method</strong>: <code>POST</code></p>
+</li>
+<li>
+<p><strong>URL</strong>: <code>/api/v1/cashout/Revoke</code></p>
+</li>
+<li>
+<p><strong>Request Body</strong>:</p>
+<ul>
+<li><code>RevokeRequest</code> object:
+<ul>
+<li><code>accountId</code> (int, required): The unique identifier of the account.</li>
+<li><code>otp</code> (int, required): The one-time password (OTP) used for verification.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Response</strong>:</p>
+<ul>
+<li><strong>Success</strong> (200 OK):
+<ul>
+<li>Returns a success message if the revoke was confirmed.</li>
+</ul>
+</li>
+<li><strong>Failure</strong> (400 Bad Request):
+<ul>
+<li>Returns an error message if there is an issue with the request.</li>
+</ul>
+</li>
+<li><strong>Failure</strong> (404 Not Found):
+<ul>
+<li>Returns an error message if the account is not found or the OTP is invalid…</li>
+</ul>
+</li>
+<li><strong>Failure</strong> (500 Internal Server Error):
+<ul>
+<li>Returns an error message if there is an issue with processing the request on the server.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Example Request</strong>:</p>
+<p>https</p>
+<p><code>POST /api/v1/cashout/Revoke</code><br>
+<code>Content-Type: application/json</code></p>
+<pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
+  <span class="token string">"accountId"</span><span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">,</span>
+  <span class="token string">"otp"</span><span class="token punctuation">:</span> <span class="token number">456789</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Example Response (Success)</strong>:</p>
+<p>json</p>
+<pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
+  <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"Revoke Success"</span><span class="token punctuation">,</span>
+  <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Example Response (Failed)</strong>:</p>
+<p>json</p>
+<pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
+  <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"Revoke Failed"</span><span class="token punctuation">,</span>
+  <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token keyword">null</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Example Response (Failure - Account Not Found)</strong>:</p>
+<p>json</p>
+</li>
+</ul>
+<pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
+  <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token string">"Account not found! Please check info."</span>
 <span class="token punctuation">}</span>
 </code></pre>
 
