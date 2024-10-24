@@ -3,7 +3,7 @@
 
 ---
 
-<h2 id="cashout-api-documentation">CashOut API Documentation</h2>
+<h2 id="omt-cashout-api-documentation">OMT-CashOut API Documentation</h2>
 <h3 id="get-apiv1cashoutgetcti">1. <strong>GET /api/v1/cashout/GETCTI</strong></h3>
 <ul>
 <li>
@@ -13,7 +13,7 @@
 <p><strong>HTTP Method</strong>: <code>GET</code></p>
 </li>
 <li>
-<p><strong>URL</strong>: <code>/api/v1/cashout/GETCTI</code></p>
+<p><strong>URL</strong>: <code>https://omt-cashout.almajmoua.org:8451/api/v1/cashout/GETCTI</code></p>
 </li>
 <li>
 <p><strong>Parameters</strong>:</p>
@@ -23,34 +23,9 @@
 </ul>
 </li>
 <li>
-<p><strong>Response</strong>:</p>
-<ul>
-<li><strong>Success</strong> (200 OK):
-<ul>
-<li>Returns the account information along with the updated OTP.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (404 Not Found):
-<ul>
-<li>Returns an error message if the account is not found or the OTP is invalid.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (400 Bad Request):
-<ul>
-<li>Returns an error message if there is an issue with the request.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (500 Internal Server Error):
-<ul>
-<li>Returns an error message if there is an issue with processing the request on the server.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
 <p><strong>Example Request</strong>:</p>
 <p>https</p>
-<p><code>GET /api/v1/cashout/getcti?accountId=123&amp;otp=456789</code></p>
+<p><code>GET https://omt-cashout.almajmoua.org:8451/api/v1/cashout/GETCTI?accountId=123&amp;otp=456789</code></p>
 </li>
 <li>
 <p><strong>Example Response (Success)</strong>:</p>
@@ -91,7 +66,7 @@
 <p><strong>HTTP Method</strong>: <code>POST</code></p>
 </li>
 <li>
-<p><strong>URL</strong>: <code>/api/v1/cashout/PATCTI</code></p>
+<p><strong>URL</strong>: <code>https://omt-cashout.almajmoua.org:8451/api/v1/cashout/PATCTI</code></p>
 </li>
 <li>
 <p><strong>Request Body</strong>:</p>
@@ -109,31 +84,9 @@
 </ul>
 </li>
 <li>
-<p><strong>Response</strong>:</p>
-<ul>
-<li><strong>Success</strong> (200 OK):
-<ul>
-<li>Returns a success message if the cashout was confirmed.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (400 Bad Request):
-<ul>
-<li>Returns an error message if there is an issue with the request.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (404 Not Found):
-<ul>
-<li>Returns an error message if the account is not found or the OTP is invalid…</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (500 Internal Server Error):</li>
-<li>Returns an error message if there is an issue with processing the request on the server.</li>
-</ul>
-</li>
-<li>
 <p><strong>Example Request</strong>:</p>
 <p>https</p>
-<p><code>POST /api/v1/cashout/PAYCTI</code><br>
+<p><code>POST https://omt-cashout.almajmoua.org:8451/api/v1/cashout/PAYCTI</code><br>
 <code>Content-Type: application/json</code></p>
 <pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
   <span class="token string">"accountId"</span><span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">,</span>
@@ -143,7 +96,6 @@
   <span class="token string">"customerName"</span><span class="token punctuation">:</span> <span class="token string">"John Doe Smith"</span><span class="token punctuation">,</span>
   <span class="token string">"receiptNumber"</span><span class="token punctuation">:</span> <span class="token string">"MJIS20160000004"</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
 </li>
 <li>
@@ -157,8 +109,8 @@
 </code></pre>
 </li>
 <li>
-<p><strong>Example Response (Failed)</strong>:</p>
-<p>json</p>
+<p><strong>Example Response (Failed)</strong>:<br>
+json</p>
 <pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
   <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
   <span class="token string">"value"</span><span class="token punctuation">:</span> <span class="token string">"Cashout Failed"</span><span class="token punctuation">,</span>
@@ -167,8 +119,8 @@
 </code></pre>
 </li>
 <li>
-<p><strong>Example Response (Failure - Account Details Do Not Match)</strong>:</p>
-<p>json</p>
+<p><strong>Example Response (Failure - Account Details Do Not Match)</strong>:<br>
+json</p>
 </li>
 </ul>
 <pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
@@ -178,11 +130,9 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>
-<p><strong>Example Response (Failure - Account Locked)</strong>:<br>
-<code>after 4 failed attempts</code></p>
-<p>json</p>
-</li>
+<li><strong>Example Response (Failure - Account Locked)</strong>:<br>
+<code>after 4 failed attempts</code><br>
+json</li>
 </ul>
 <pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
   <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
@@ -191,11 +141,9 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>
-<p><strong>Example Response (Failure - Account Locked)</strong>:<br>
-<code>date expires</code></p>
-<p>json</p>
-</li>
+<li><strong>Example Response (Failure - Account Locked)</strong>:<br>
+<code>date expires</code><br>
+json</li>
 </ul>
 <pre class=" language-json"><code class="prism  language-json"><span class="token punctuation">{</span>
   <span class="token string">"isSuccess"</span><span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
@@ -212,7 +160,7 @@
 <p><strong>HTTP Method</strong>: <code>POST</code></p>
 </li>
 <li>
-<p><strong>URL</strong>: <code>/api/v1/cashout/Revoke</code></p>
+<p><strong>URL</strong>: <code>https://omt-cashout.almajmoua.org:8451/api/v1/cashout/Revoke</code></p>
 </li>
 <li>
 <p><strong>Request Body</strong>:</p>
@@ -226,34 +174,9 @@
 </ul>
 </li>
 <li>
-<p><strong>Response</strong>:</p>
-<ul>
-<li><strong>Success</strong> (200 OK):
-<ul>
-<li>Returns a success message if the revoke was confirmed.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (400 Bad Request):
-<ul>
-<li>Returns an error message if there is an issue with the request.</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (404 Not Found):
-<ul>
-<li>Returns an error message if the account is not found or the OTP is invalid…</li>
-</ul>
-</li>
-<li><strong>Failure</strong> (500 Internal Server Error):
-<ul>
-<li>Returns an error message if there is an issue with processing the request on the server.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
 <p><strong>Example Request</strong>:</p>
 <p>https</p>
-<p><code>POST /api/v1/cashout/Revoke</code><br>
+<p><code>POST https://omt-cashout.almajmoua.org:8451/api/v1/cashout/Revoke</code><br>
 <code>Content-Type: application/json</code></p>
 <pre class=" language-json"><code class="prism { language-json"><span class="token punctuation">{</span>
   <span class="token string">"accountId"</span><span class="token punctuation">:</span> <span class="token number">123</span><span class="token punctuation">,</span>
