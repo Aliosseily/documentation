@@ -200,4 +200,20 @@ json</li>
   <span class="token string">"error"</span><span class="token punctuation">:</span> <span class="token string">"Account not found! Please check info."</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="notes"><strong>Notes</strong></h2>
+<ol>
+<li><strong>Security:</strong>
+<ul>
+<li>Endpoints require basic authentication to ensure account safety.</li>
+</ul>
+</li>
+</ol>
+<h2 id="changelog"><strong>Changelog</strong></h2>
+<ul>
+<li><strong>Version 1:</strong>
+<ul>
+<li>Initial release with <code>GETCTI</code>, <code>PAYCTI</code>, and <code>Revoke</code> endpoints.</li>
+</ul>
+</li>
+</ul>
 
