@@ -7,7 +7,7 @@
 <h3 id="get-apiv1cashoutgetcti">1. <strong>GET /api/v1/cashout/GETCTI</strong></h3>
 <ul>
 <li>
-<p><strong>Description</strong>: Retrieves account information and updates the OTP for the given account.</p>
+<p><strong>Description</strong>: Retrieves account information.</p>
 </li>
 <li>
 <p><strong>HTTP Method</strong>: <code>GET</code></p>
